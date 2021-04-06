@@ -1,10 +1,10 @@
 let video = document.getElementById('video');
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
-  faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-  faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-  faceapi.nets.faceExpressionNet.loadFromUri("/models"),
+  faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
+  faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
+  faceapi.nets.faceRecognitionNet.loadFromUri("./models"),
+  faceapi.nets.faceExpressionNet.loadFromUri("./models"),
 ]).then(startVideo);
 
 function startVideo() {
@@ -40,10 +40,5 @@ video.addEventListener("playing", () => {
     faceapi.draw.drawDetections(canvas, resizedDetections);
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
     faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-
-    new faceapi.draw.DrawTextField(
-      [`${faceapi.utils.round(interpolatedAge, 0)}`],
-      bottomRight
-    ).draw(canvas);
   }, 100);
 });
